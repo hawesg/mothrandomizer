@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+    <meta charset="UTF-8">
+    <title>Moth</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons'>
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/vuetify@1.2.2/dist/vuetify.min.css'>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/solid.css" integrity="sha384-VGP9aw4WtGH/uPAOseYxZ+Vz/vaTb1ehm1bwx92Fm8dTrE+3boLfF1SpAtB1z7HW" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/regular.css" integrity="sha384-ZlNfXjxAqKFWCwMwQFGhmMh3i89dWDnaFU2/VZg9CvsMGA7hXHQsPIqS+JIAmgEq" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/fontawesome.css" integrity="sha384-1rquJLNOM3ijoueaaeS5m+McXPJCGdr5HcA03/VHXxcp2kX2sUrQDmFc3jR5i/C7" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="css/style.css">
+
+
+</head>
+
+<body>
+
+<div id="app">
+    <v-app id="inspire">
+        <v-layout justify-center>
+            <v-flex xs12 sm8>
+                <!--<v-toolbar color="indigo" dark>
+                    <v-toolbar-side-icon></v-toolbar-side-icon>
+                    <v-toolbar-title>MOTHRAndomizer</v-toolbar-title>
+                    <v-spacer></v-spacer>
+
+
+                </v-toolbar>-->
+
+                <v-card>
+                    <v-container fluid grid-list-md>
+                        <v-layout row wrap>
+                            <v-flex 12>
+                                <v-card>
+                                    <v-img
+                                            :aspect-ratio="16/9" src="banner.jpg"
+                                            height="300px"
+                                    >
+
+                                    </v-img>
+                                    <v-card-title primary-title v-if="firstTime">
+                                        <img
+                                                src="header.png" style="margin: auto; padding-bottom: 1em"
+
+                                        ></img>
+                                    </v-card-title>
+
+
+                                    <v-card-actions>
+                                        <v-btn icon>
+                                            <v-icon>fa-sun</v-icon>
+                                        </v-btn>
+                                        <v-btn icon>
+                                            <v-icon>fa-moon</v-icon>
+                                        </v-btn>
+                                        <v-spacer></v-spacer>
+                                        <v-btn v-on:click="pick"icon>
+                                            <i v-bind:class="{ 'fa-pulse': isActive }" class="v-icon fa-dice fas"></i>
+                                        </v-btn>
+                                        <v-btn icon v-on:click="clear">
+                                            <v-icon color="red">fa-times-circle</v-icon>
+                                        </v-btn>
+
+                                        <v-dialog
+                                                v-model="dialog"
+                                                width="500"
+                                        >
+                                            <v-btn icon
+                                                   slot="activator"
+
+                                            >
+                                                <v-icon color="blue">fa-question-circle</v-icon>
+                                            </v-btn>
+
+                                            <v-card>
+                                                <v-card-title
+                                                        class="headline grey lighten-2"
+                                                        primary-title
+                                                >
+                                                    <v-img
+                                                            src="header.png"
+                                                            contain
+                                                    >
+                                                </v-card-title>
+
+                                                <v-card-text>
+                                                    <p>Select students for participation using the modern version of the <a href="https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle">Fisher-Yates shuffle</a> which is will select an unbiased sample.</p>
+                                                    <ul class="fa-ul">
+                                                        <li><span class="fa-li" ><i class="fas fa-sun"></i></span>Toggle Full Time MBA Class</li>
+                                                        <li><span class="fa-li"><i class="fas fa-moon"></i></span>Toggle Professional MBA Class*</li>
+                                                        <li><span class="fa-li"><i class="fas fa-dice fa-pulse"></i></span>Generate the next participant.</li>
+                                                        <li><span class="fa-li"><i class="far fa-times-circle"></i></span>Clear picks and restores the pool of participants.</li>
+                                                    </ul>
+                                                    <v-divider></v-divider>
+                                                    <p>* Not implemented yet.</p>
+                                                </v-card-text>
+
+                                                <v-divider></v-divider>
+
+                                                <v-card-actions>
+                                                    <v-spacer></v-spacer>
+                                                    <v-btn
+                                                            color="primary"
+                                                            flat
+                                                            @click="dialog = false"
+                                                    >
+                                                        Close
+                                                    </v-btn>
+                                                </v-card-actions>
+                                            </v-card>
+                                        </v-dialog>
+                                    </v-card-actions>
+                                </v-card>
+                            </v-flex>
+
+                        </v-layout>
+                        <v-layout row wrap>
+                            <v-flex xs12 sm6>
+                                <v-card id="picker">
+                                    <v-img
+                                            :src="current.image" lazy-src="http://garretthawes.com/moth/i/male.jpg"
+                                            height="300px"
+                                            contain
+                                    ></v-img>
+                                    <v-card-title primary-title>
+                                        <div class="center">
+                                            <h2 class="headline mb-0">{{current.name}}</h2>
+                                        </div>
+                                    </v-card-title>
+                                </v-card>
+                            </v-flex>
+                            <v-flex xs12 sm6>
+                                <v-card hover>
+                                    <v-list>
+                                        <v-list-tile
+                                                v-for="item in picked"
+                                                :key="item.id"
+                                                avatar
+                                                @click=""
+                                        >
+                                            <v-list-tile-action>
+                                                <v-icon v-if="item.picked" color="pink">check</v-icon>
+                                            </v-list-tile-action>
+
+                                            <v-list-tile-content>
+                                                <v-list-tile-title v-text="item.name"></v-list-tile-title>
+                                            </v-list-tile-content>
+
+                                            <v-list-tile-avatar>
+                                                <img :src="item.image">
+                                            </v-list-tile-avatar>
+                                        </v-list-tile>
+                                    </v-list>
+                                </v-card>
+                            </v-flex>
+
+                        </v-layout>
+                    </v-container>
+                </v-card>
+            </v-flex>
+        </v-layout>
+    </v-app>
+</div>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.11/lodash.min.js'></script>
+<script src='https://cdn.jsdelivr.net/npm/babel-polyfill/dist/polyfill.min.js'></script>
+<script src='https://cdn.jsdelivr.net/npm/vue/dist/vue.js'></script>
+<script src='https://cdn.jsdelivr.net/npm/vuetify@1.2.2/dist/vuetify.min.js'></script>
+
+
+
+<script  src="js/index.js"></script>
+
+
+
+
+</body>
+
+</html>
