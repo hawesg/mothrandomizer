@@ -1,3 +1,9 @@
 .center{
     margin: auto;
 }
+[v-cloak] {
+    display: none;
+}
+.hidden {
+    display: none;
+}

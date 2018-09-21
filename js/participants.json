@@ -1,0 +1,96 @@
+{
+{
+id: 1,
+name: 'Garrett Hawes',
+picked: false,
+image: "http://garretthawes.com/moth/i/garrett.jpg" },
+
+{
+id: 2,
+name: 'Hannes Rusterholz',
+picked: false,
+image: "http://garretthawes.com/moth/i/hannes.jpg" },
+
+{
+id: 3,
+name: 'Jon Deirmenjian',
+picked: false,
+image: "http://garretthawes.com/moth/i/jon.jpg" },
+
+{
+id: 4,
+name: 'Natasha Patel',
+picked: false,
+image: "http://garretthawes.com/moth/i/natasha.jpg" },
+
+{
+id: 5,
+name: 'Ricky Lobel',
+picked: false,
+image: "http://garretthawes.com/moth/i/ricky.jpg" },
+
+{
+id: 6,
+name: 'Ranjith Kankanala',
+picked: false,
+image: "http://garretthawes.com/moth/i/ranjith.jpg" },
+
+{
+id: 7,
+name: 'Zayed Buali',
+picked: false,
+image: "http://garretthawes.com/moth/i/male.jpg" },
+
+{
+id: 8,
+name: 'Jeremy Ross',
+picked: false,
+image: "http://garretthawes.com/moth/i/jeremy.jpg" },
+
+{
+id: 9,
+name: 'Jacqueline Jelloian',
+picked: false,
+image: "http://garretthawes.com/moth/i/jacqueline.jpg" },
+
+{
+id: 10,
+name: 'Pandu Setiawan',
+picked: false,
+image: "http://garretthawes.com/moth/i/male.jpg" },
+
+{
+id: 11,
+name: 'Alex Chikovani',
+picked: false,
+image: "http://garretthawes.com/moth/i/alex.jpg" },
+
+{
+id: 12,
+name: 'Peter Dickinson',
+picked: false,
+image: "http://garretthawes.com/moth/i/peter.jpg" },
+
+{
+id: 13,
+name: 'Saloni Vyas',
+picked: false,
+image: "http://garretthawes.com/moth/i/female.jpg" },
+
+{
+id: 14,
+name: 'Melanie Kane',
+image: "http://garretthawes.com/moth/i/melanie.jpg" },
+
+{
+id: 15,
+name: 'Ken Yeh',
+picked: false,
+image: "http://garretthawes.com/moth/i/ken.jpg" },
+
+{
+id: 16,
+name: 'Hendrino Usnal',
+picked: false,
+image: "http://garretthawes.com/moth/i/hendrino.jpg" }
+]}
