@@ -111,7 +111,7 @@ new Vue({
       e1: "Full Time",
       pool: [],
       picked: [],
-      roll: {name: '', image: "images/animation.gif"},
+      roll: {name: '', image: "images/roll.gif"},
       current: {
           image: "images/init.jpg"
       }
