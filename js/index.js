@@ -184,14 +184,21 @@ var vu = new Vue({
                     return n.name == y.name;
                 });
                 this.isActive=true;
-                setTimeout(() => {
+                if(this.pickDelay!=0){
+                    setTimeout(() => {
+                        this.current = y;
+                        this.picked = _.concat(y, this.$data.picked);
+                        this.isActive=false;
+                    }, this.pickDelay);
+                }
+                else{
                     this.current = y;
                     this.picked = _.concat(y, this.$data.picked);
                     this.isActive=false;
-                }, this.pickDelay);
+                }
             }
             else{
-
+                // Add error message
             }
         },
         clear: function clear() {
