@@ -173,7 +173,7 @@ var vu = new Vue({
     },
     created: function () {
         var date = new Date();
-        this.currentSection=(date.getHours()==23||(date.getHours()==13&&date.getMinutes()<20))?"Section 2":"Section 1";
+        this.currentSection=(date.getHours()==13||(date.getHours()==14&&date.getMinutes()<20))?"Section 2":"Section 1";
     },
     methods: {
         pick: function () {
