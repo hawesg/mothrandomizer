@@ -1,5 +1,5 @@
 
-new Vue({
+var vu = new Vue({
   el: '#app',
   data: {
       firstTime: true,
@@ -7,123 +7,142 @@ new Vue({
       dialog: false,
       pickDelay: 2500,
       participants:[],
-      fullTime: [
+      section1: [
     {
-        id: 1,
         name: 'Garrett Hawes',
-        picked: false,
-        image: "images/garrett.jpg" },
+        image: "images/section1/garrett.jpg" },
     {
-        id: 2,
         name: 'Hannes Rusterholz',
-        picked: false,
-        image: "images/hannes.jpg" },
+        image: "images/section1/hannes.jpg" },
 
     {
-        id: 3,
         name: 'Jon Deirmenjian',
-        picked: false,
-        image: "images/jon.jpg" },
+        image: "images/section1/jon.jpg" },
 
     {
-        id: 4,
         name: 'Natasha Patel',
-        picked: false,
-        image: "images/natasha.jpg" },
+        image: "images/section1/natasha.jpg" },
 
     {
-        id: 5,
         name: 'Ricky Lobel',
-        picked: false,
-        image: "images/ricky.jpg" },
+        image: "images/section1/ricky.jpg" },
 
     {
-        id: 6,
         name: 'Ranjith Kankanala',
-        picked: false,
-        image: "images/ranjith.jpg" },
+        image: "images/section1/ranjith.jpg" },
 
     {
-        id: 7,
         name: 'Zayed Buali',
-        picked: false,
-        image: "images/zayed.jpg" },
+        image: "images/section1/zayed.jpg" },
 
     {
-        id: 8,
         name: 'Jeremy Ross',
-        picked: false,
-        image: "images/jeremy.jpg" },
+        image: "images/section1/jeremy.jpg" },
 
     {
-        id: 9,
         name: 'Jacqueline Jelloian',
-        picked: false,
-        image: "images/jacqueline.jpg" },
+        image: "images/section1/jacqueline.jpg" },
 
     {
-        id: 10,
         name: 'Pandu Setiawan',
-        picked: false,
-        image: "images/pandu.jpg" },
+        image: "images/section1/pandu.jpg" },
 
     {
-        id: 11,
         name: 'Alex Chikovani',
-        picked: false,
-        image: "images/alex.jpg" },
+        image: "images/section1/alex.jpg" },
 
     {
-        id: 12,
         name: 'Peter Dickinson',
-        picked: false,
-        image: "images/peter.jpg" },
+        image: "images/section1/peter.jpg" },
 
     {
-        id: 13,
         name: 'Saloni Vyas',
-        picked: false,
-        image: "images/saloni.jpg" },
+        image: "images/section1/saloni.jpg" },
 
     {
-        id: 14,
         name: 'Melanie Kane',
-        image: "images/melanie.jpg" },
+        image: "images/section1/melanie.jpg" },
 
     {
-        id: 15,
         name: 'Ken Yeh',
-        picked: false,
-        image: "images/ken.jpg" },
+        image: "images/section1/ken.jpg" },
 
     {
-        id: 16,
         name: 'Hendrino Usnal',
-        picked: false,
-        image: "images/hendrino.jpg" },
-        {id: 17,
+        image: "images/section1/hendrino.jpg" },
+        {
          name: 'Ensieh Bahrami',
-         picked: false,
-         image: "images/ensieh.jpg" }
+         image: "images/section1/ensieh.jpg" }
 ],
-      currentClass: 0,
-      classes: ["Full Time", "Professional"],
-      e1: "Full Time",
+      section2: [
+          {
+              name: 'Angelica',
+              image: "images/section2/angelica.jpg" },
+          {
+              name: 'Atorina',
+              image: "images/section2/atorina.jpg" },
+          {
+              name: 'Brian',
+              image: "images/section2/brian.jpg" },
+          {
+              name: 'Hang',
+              image: "images/section2/hang.jpg" },
+          {
+              name: 'Hrag',
+              image: "images/section2/hrag.jpg" },
+          {
+              name: 'Liz',
+              image: "images/section2/liz.jpg" },
+          {
+              name: 'Maria',
+              image: "images/section2/maria.jpg" },
+          {
+              name: 'McKenzie',
+              image: "images/section2/mckenzie.jpg" },
+          {
+              name: 'Ricky',
+              image: "images/section2/ricky.jpg" },
+          {
+              name: 'Tai',
+              image: "images/section2/tai.jpg" },
+          {
+              name: 'Theresa Keh',
+              image: "images/section2/theresa.jpg" },
+          {
+              name: 'Turki',
+              image: "images/section2/turki.jpg" },
+          {
+              name: 'Vipul Vatsyayan',
+              image: "images/section2/vipul.jpg" }
+      ],
+      currentClass: [],
+      classes: ["Section 1", "Section 2"],
+      currentSection: "Section 1",
       pool: [],
       picked: [],
-      roll: {name: '', image: "images/roll.gif"},
+      roll: {name: '', image: "images/section1/roll.gif"},
       current: {
           image: "images/init.jpg"
       }
   },
+    watch: {
+        currentSection: function (val) {
+            this.participants = (val == "Section 1") ? this.section1 : this.section2;
+            this.roll.image = (val == "Section 1") ? "images/section1/roll.gif" : "images/section2/roll.gif";
+            this.pool = _.cloneDeep(this.participants);
+            this.picked = [];
+            this.current = {
+                image: "images/init.jpg"
+            };
+        }
+    },
    computed: {
         listIsEmpty: function () {
             return _.size(this.picked)==0;
         }
     },
   created: function () {
-    //this.participants = _.cloneDeep(fullTime);
-    this.participants = _.cloneDeep(this.fullTime);
+    this.participants = _.cloneDeep(this.section1);
     this.pool = _.cloneDeep(this.participants);
     this.$data.picked = [];
   },
@@ -137,22 +156,28 @@ new Vue({
               easing: 'easeInOutCubic'
           });
       }
-      this.current = this.roll;
-      var y = _.sample(this.pool);
-      _.remove(this.pool, function (n) {
-        return n.id == y.id;
-      });
-      this.isActive=true;
-      setTimeout(() => {
-        this.current = y;
-        this.picked = _.concat(y, this.$data.picked);
-        this.isActive=false;
-      }, this.pickDelay);
+      if(_.size(this.pool)!=0){
+          this.current = this.roll;
+          var y = _.sample(this.pool);
+          _.remove(this.pool, function (n) {
+              return n.name == y.name;
+          });
+          this.isActive=true;
+          setTimeout(() => {
+              this.current = y;
+              this.picked = _.concat(y, this.$data.picked);
+              this.isActive=false;
+          }, this.pickDelay);
+      }
+      else{
+
+      }
     },
     clear: function clear() {
       this.pool = _.cloneDeep(this.participants);
       this.picked = [];
       this.current = {
+          name: "",
           image: "images/init.jpg"
       };
     } } });

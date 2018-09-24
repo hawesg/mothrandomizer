@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/solid.css" integrity="sha384-VGP9aw4WtGH/uPAOseYxZ+Vz/vaTb1ehm1bwx92Fm8dTrE+3boLfF1SpAtB1z7HW" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/regular.css" integrity="sha384-ZlNfXjxAqKFWCwMwQFGhmMh3i89dWDnaFU2/VZg9CvsMGA7hXHQsPIqS+JIAmgEq" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/fontawesome.css" integrity="sha384-1rquJLNOM3ijoueaaeS5m+McXPJCGdr5HcA03/VHXxcp2kX2sUrQDmFc3jR5i/C7" crossorigin="anonymous">
-
     <link rel="stylesheet" href="css/style.css">
 
 
@@ -30,30 +29,16 @@
                             <v-flex 12>
                                 <v-card>
                                     <v-img
-                                            :aspect-ratio="16/9" src="banner.jpg"
-                                            height="300px"
+                                            :aspect-ratio="16/9"
+                                            src="images/header-comic.jpg"
+                                            height="335px"
                                     >
 
                                     </v-img>
-                                    <v-card-title primary-title v-if="firstTime">
-                                        <img
-                                                src="header.png" style="margin: auto; padding-bottom: 1em"
-
-                                        ></img>
-                                    </v-card-title>
 
 
-                                    <v-card-actions>
-                                       <!-- <v-btn icon>
-                                            <v-icon>fa-sun</v-icon>
-                                        </v-btn>
-                                        <v-btn icon>
-                                            <v-icon>fa-moon</v-icon>
-                                        </v-btn>-->
-                                        <v-dialog
-                                                v-model="dialog"
-                                                width="500"
-                                        >
+                                    <!--<v-card-actions>
+                                        <v-dialog v-model="dialog" width="500">
                                             <v-btn icon
                                                    slot="activator"
 
@@ -111,7 +96,7 @@
                                                             <v-flex xs12>
                                                                 <v-select
                                                                         :items="classes"
-                                                                        v-model="e1"
+                                                                        v-model="currentSection"
                                                                         menu-props="auto"
                                                                         persistent-hint
                                                                         label="Pick Class"
@@ -142,18 +127,19 @@
                                         <v-btn v-on:click="pick" icon>
                                             <i v-bind:class="{ 'fa-pulse': isActive }" class="v-icon fa-dice fas"></i>
                                         </v-btn>
-                                    </v-card-actions>
+                                    </v-card-actions>-->
                                 </v-card>
                             </v-flex>
 
                         </v-layout>
                         <v-layout row wrap>
                             <v-flex xs12 sm6>
-                                <v-card id="picker">
+                                <v-card id="picker" hover height="360px">
                                     <v-img
                                             :src="current.image" lazy-src="images/init.jpg"
                                             height="300px"
                                             contain
+                                            v-on:click="pick"
                                     ></v-img>
                                     <v-card-title primary-title>
                                         <div class="center">
@@ -164,8 +150,116 @@
                                 </v-card>
                             </v-flex>
                             <v-flex xs12 sm6>
-                                <v-card hover>
-                                    <v-list>
+                                <v-card hover height="360px">
+                                    <v-toolbar>
+                                        <v-dialog v-model="dialog" width="500">
+                                            <v-btn icon
+                                                   slot="activator"
+
+                                            >
+                                                <v-icon>build</v-icon>
+                                            </v-btn>
+
+                                            <v-card>
+                                                <v-card-title
+                                                        class="headline grey lighten-2"
+                                                        primary-title
+                                                >
+                                                    <v-img
+                                                            src="images/header.png"
+                                                            contain
+                                                    >
+                                                </v-card-title>
+
+                                                <v-card-text>
+                                                    <v-subheader>
+                                                        Help
+                                                    </v-subheader>
+                                                    <p>Select students for participation using the modern version of the <a href="https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle">Fisher-Yates shuffle</a> which is will select an unbiased sample.</p>
+                                                    <ul class="fa-ul">
+                                                        <li><span class="fa-li"><i class="fas fa-dice fa-pulse"></i></span>Generate the next participant.</li>
+                                                        <li><span class="fa-li"><i class="far fa-times-circle"></i></span>Clear picks and restores the pool of participants.</li>
+                                                    </ul>
+
+                                                    <v-divider></v-divider>
+                                                    <v-subheader>
+                                                        Settings
+                                                    </v-subheader>
+                                                    <v-container fluid grid-list-lg>
+                                                        <v-layout
+                                                                row
+                                                                wrap
+                                                        >
+                                                            <v-flex xs9>
+                                                                <v-slider
+                                                                        v-model="pickDelay"
+                                                                        :max="3000"
+                                                                        step="500"
+                                                                        ticks="always"
+                                                                        tick-size="2"
+                                                                        thumb-label  prepend-icon="fa-hourglass"
+                                                                ></v-slider>
+                                                            </v-flex>
+
+                                                            <v-flex xs3>
+                                                                <div class="text-xs-center">
+                                                                    <v-chip>{{pickDelay}} ms</v-chip>
+                                                                </div>
+                                                            </v-flex>
+
+                                                            <v-flex xs12>
+                                                                <v-select
+                                                                        :items="classes"
+                                                                        v-model="currentSection"
+                                                                        menu-props="auto"
+                                                                        persistent-hint
+                                                                        label="Pick Class"
+                                                                        hint="Pick Class"
+                                                                        hide-details
+                                                                        prepend-icon="fa-graduation-cap"
+                                                                        single-line
+                                                                ></v-select>
+                                                        </v-layout>
+                                                    </v-container>
+                                                </v-card-text>
+
+                                                <v-divider></v-divider>
+
+                                                <v-card-actions>
+                                                    <v-spacer></v-spacer>
+                                                    <v-btn
+                                                            color="primary"
+                                                            flat
+                                                            @click="dialog = false"
+                                                    >
+                                                        Close
+                                                    </v-btn>
+                                                </v-card-actions>
+                                            </v-card>
+                                        </v-dialog>
+                                        <v-btn v-on:click="pick" icon>
+                                            <i v-bind:class="{ 'fa-pulse': isActive }" class="v-icon fa-dice fas"></i>
+                                        </v-btn>
+                                        <v-spacer></v-spacer>
+                                        <v-select
+                                            :items="classes"
+                                            v-model="currentSection"
+                                            menu-props="auto"
+                                            hide-details
+
+                                            single-line
+                                    ></v-select>
+                                        <v-spacer></v-spacer>
+                                        <v-toolbar-items class="hidden-sm-and-down">
+                                            <v-btn  v-bind:disabled="listIsEmpty"  color="error" v-on:click="clear">Clear List</v-btn>
+                                        </v-toolbar-items>
+                                    </v-toolbar>
+                                    <v-card-actions>
+                                        <v-spacer></v-spacer>
+
+                                    </v-card-actions>
+                                    <div data-simplebar>
+                                    <v-list style="max-height: 250px; overflow-y: scroll;">
                                         <v-list-tile
                                                 v-for="item in picked"
                                                 :key="item.id"
@@ -175,16 +269,12 @@
                                             <v-list-tile-content>
                                                 <v-list-tile-title v-text="item.name"></v-list-tile-title>
                                             </v-list-tile-content>
-
                                             <v-list-tile-avatar>
                                                 <img :src="item.image">
                                             </v-list-tile-avatar>
                                         </v-list-tile>
                                     </v-list>
-                                    <v-card-actions>
-                                        <v-spacer></v-spacer>
-                                        <v-btn  v-bind:class="{ 'hidden': listIsEmpty }" color="error" v-on:click="clear">Clear List</v-btn>
-                                    </v-card-actions>
+                                    </div>
                                 </v-card>
                             </v-flex>
 
@@ -200,6 +290,7 @@
         </v-layout>
 
     </v-app>
+
 </div>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.11/lodash.min.js'></script>
 <script src='https://cdn.jsdelivr.net/npm/babel-polyfill/dist/polyfill.min.js'></script>
@@ -209,9 +300,6 @@
 
 
 <script  src="js/index.js"></script>
-
-
-
 
 </body>
 
