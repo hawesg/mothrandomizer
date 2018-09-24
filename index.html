@@ -22,12 +22,22 @@
     <v-app id="inspire">
         <v-layout justify-center>
             <v-flex xs12 sm8>
-
                 <v-card>
                     <v-container fluid grid-list-md>
                         <v-layout row wrap>
                             <v-flex 12>
                                 <v-card>
+                                    <v-btn
+                                            absolute
+                                            dark
+                                            fab
+                                            top
+                                            right
+                                            color="blue"
+                                            class="fab-container hidden"
+                                    >
+                                        <v-icon>build</v-icon>
+                                    </v-btn>
                                     <v-img
                                             :aspect-ratio="16/9"
                                             src="images/header-comic.jpg"
@@ -134,7 +144,7 @@
                         </v-layout>
                         <v-layout row wrap>
                             <v-flex xs12 sm6>
-                                <v-card id="picker" hover height="360px">
+                                <v-card id="picker" :hover="!poolIsEmpty" height="360px">
                                     <v-img
                                             :src="current.image" lazy-src="images/init.jpg"
                                             height="300px"
@@ -150,7 +160,7 @@
                                 </v-card>
                             </v-flex>
                             <v-flex xs12 sm6>
-                                <v-card hover height="360px">
+                                <v-card height="360px">
                                     <v-toolbar>
                                         <v-dialog v-model="dialog" width="500">
                                             <v-btn icon
@@ -166,25 +176,14 @@
                                                         primary-title
                                                 >
                                                     <v-img
-                                                            src="images/header.png"
+                                                            src="images/mothrandomizer-comic.png"
                                                             contain
                                                     >
                                                 </v-card-title>
 
                                                 <v-card-text>
-                                                    <v-subheader>
-                                                        Help
-                                                    </v-subheader>
                                                     <p>Select students for participation using the modern version of the <a href="https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle">Fisher-Yates shuffle</a> which is will select an unbiased sample.</p>
-                                                    <ul class="fa-ul">
-                                                        <li><span class="fa-li"><i class="fas fa-dice fa-pulse"></i></span>Generate the next participant.</li>
-                                                        <li><span class="fa-li"><i class="far fa-times-circle"></i></span>Clear picks and restores the pool of participants.</li>
-                                                    </ul>
-
                                                     <v-divider></v-divider>
-                                                    <v-subheader>
-                                                        Settings
-                                                    </v-subheader>
                                                     <v-container fluid grid-list-lg>
                                                         <v-layout
                                                                 row
@@ -221,6 +220,13 @@
                                                                 ></v-select>
                                                         </v-layout>
                                                     </v-container>
+                                                    <v-btn
+                                                            v-bind:disabled="pickedIsEmpty"  color="error" v-on:click="clear"
+                                                    >
+                                                        Clear List
+                                                        <v-icon right dark>list</v-icon>
+                                                    </v-btn>
+
                                                 </v-card-text>
 
                                                 <v-divider></v-divider>
@@ -237,7 +243,9 @@
                                                 </v-card-actions>
                                             </v-card>
                                         </v-dialog>
-                                        <v-btn v-on:click="pick" icon>
+                                        <v-btn v-on:click="pick"
+                                               v-bind:disabled="poolIsEmpty"
+                                               icon>
                                             <i v-bind:class="{ 'fa-pulse': isActive }" class="v-icon fa-dice fas"></i>
                                         </v-btn>
                                         <v-spacer></v-spacer>
@@ -246,12 +254,12 @@
                                             v-model="currentSection"
                                             menu-props="auto"
                                             hide-details
-
+                                            flat
                                             single-line
                                     ></v-select>
                                         <v-spacer></v-spacer>
                                         <v-toolbar-items class="hidden-sm-and-down">
-                                            <v-btn  v-bind:disabled="listIsEmpty"  color="error" v-on:click="clear">Clear List</v-btn>
+                                            <v-btn  v-bind:disabled="pickedIsEmpty"  color="error" v-on:click="clear">Clear List</v-btn>
                                         </v-toolbar-items>
                                     </v-toolbar>
                                     <v-card-actions>
@@ -286,8 +294,8 @@
                     <div>&copy; {{ new Date().getFullYear() }} Garrett Hawes</div>
                 </v-footer>
             </v-flex>
-
         </v-layout>
+
 
     </v-app>
 
