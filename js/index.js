@@ -3,6 +3,7 @@ var vu = new Vue({
     el: '#app',
     data: {
         fab: false,
+        sheet: false,
         isActive:false,
         dialog: false,
         pickDelay: 2500,
@@ -144,13 +145,44 @@ var vu = new Vue({
         ],
         currentClass: [],
         classes: ["Section 1", "Section 2"],
+        sampleSize: "0",
         currentSection: "",
+        sample:[],
         pool: [],
         picked: [],
         roll: {name: '', image: "images/section1/roll.gif"},
         current: {
-            image: "images/init2.jpg"
-        }
+            image: "images/init3.jpg"
+        },
+        dialog2: false,
+        dialog3: false,
+        headerImages: [
+            {
+                value: "images/header-comic.jpg",
+                name: "Comic"
+            },
+            {
+                value: "images/vintage-animated.gif",
+                name: "Comic Animated"
+            },
+            {
+                value: "images/vintage-annimation1.gif",
+                name: "Vintage Animated"
+            },
+            {
+                value: "images/anaglyph.png",
+                name: "Analygraph"
+            },
+            {
+                value: "images/anaglyph2.png",
+                name: "Analygraph 2"
+            },
+            {
+                value: "images/moth-header-animated.gif",
+                name: "Glitch Animated"
+            }
+        ],
+        headerImage: "images/header-comic.jpg"
     },
     watch: {
         currentSection: function (val) {
@@ -159,8 +191,15 @@ var vu = new Vue({
             this.pool = _.cloneDeep(this.participants);
             this.picked = [];
             this.current = {
-                image: "images/init2.jpg"
+                image: "images/init3.jpg"
             };
+        },
+        sampleSize: function (val) {
+            var number = parseInt(val,10);
+            this.sample = _.sampleSize(this.participants, number);
+        },
+        dialog2: function (val){
+            this.sampleSize = "0";
         }
     },
     computed: {
@@ -169,6 +208,10 @@ var vu = new Vue({
         },
         poolIsEmpty: function(){
             return _.size(this.participants)==_.size(this.picked);
+        },
+        sampleSelector: function(){
+            var size = _.size(this.participants);
+            return _.range(size).map(function (index) { return index+"" });
         }
     },
     created: function () {
