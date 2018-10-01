@@ -7,141 +7,142 @@ var vu = new Vue({
         isActive:false,
         dialog: false,
         pickDelay: 2500,
+        delayActive: true,
         participants:[],
         section1: [
             {
                 name: 'Garrett Hawes',
-                image: "images/section1/garrett.jpg" },
+                image: "images/sm/section1/garrett.jpg" },
             {
                 name: 'Hannes Rusterholz',
-                image: "images/section1/hannes.jpg" },
+                image: "images/sm/section1/hannes.jpg" },
 
             {
                 name: 'Jon Deirmenjian',
-                image: "images/section1/jon.jpg" },
+                image: "images/sm/section1/jon.jpg" },
 
             {
                 name: 'Natasha Patel',
-                image: "images/section1/natasha.jpg" },
+                image: "images/sm/section1/natasha.jpg" },
 
             {
                 name: 'Ricky Lobel',
-                image: "images/section1/ricky.jpg" },
+                image: "images/sm/section1/ricky.jpg" },
 
             {
                 name: 'Ranjith Kankanala',
-                image: "images/section1/ranjith.jpg" },
+                image: "images/sm/section1/ranjith.jpg" },
 
             {
                 name: 'Zayed Buali',
-                image: "images/section1/zayed.jpg" },
+                image: "images/sm/section1/zayed.jpg" },
 
             {
                 name: 'Jeremy Ross',
-                image: "images/section1/jeremy.jpg" },
+                image: "images/sm/section1/jeremy.jpg" },
 
             {
                 name: 'Jacqueline Jelloian',
-                image: "images/section1/jacqueline.jpg" },
+                image: "images/sm/section1/jacqueline.jpg" },
 
             {
                 name: 'Pandu Setiawan',
-                image: "images/section1/pandu.jpg" },
+                image: "images/sm/section1/pandu.jpg" },
 
             {
                 name: 'Alex Chikovani',
-                image: "images/section1/alex.jpg" },
+                image: "images/sm/section1/alex.jpg" },
 
             {
                 name: 'Peter Dickinson',
-                image: "images/section1/peter.jpg" },
+                image: "images/sm/section1/peter.jpg" },
 
             {
                 name: 'Saloni Vyas',
-                image: "images/section1/saloni.jpg" },
+                image: "images/sm/section1/saloni.jpg" },
 
             {
                 name: 'Melanie Kane',
-                image: "images/section1/melanie.jpg" },
+                image: "images/sm/section1/melanie.jpg" },
 
             {
                 name: 'Ken Yeh',
-                image: "images/section1/ken.jpg" },
+                image: "images/sm/section1/ken.jpg" },
 
             {
                 name: 'Hendrino Usnal',
-                image: "images/section1/hendrino.jpg" },
+                image: "images/sm/section1/hendrino.jpg" },
             {
                 name: 'Ensieh Bahrami',
-                image: "images/section1/ensieh.jpg" }
+                image: "images/sm/section1/ensieh.jpg" }
         ],
         section2: [
             {
                 name: 'Angelica',
-                image: "images/section2/angelica.jpg" },
+                image: "images/sm/section2/angelica.jpg" },
             {
                 name: 'Atorina',
-                image: "images/section2/atorina.jpg" },
+                image: "images/sm/section2/atorina.jpg" },
             {
                 name: 'Brian',
-                image: "images/section2/brian.jpg" },
+                image: "images/sm/section2/brian.jpg" },
             {
                 name: 'Hang',
-                image: "images/section2/hang.jpg" },
+                image: "images/sm/section2/hang.jpg" },
             {
                 name: 'Hrag',
-                image: "images/section2/hrag.jpg" },
+                image: "images/sm/section2/hrag.jpg" },
             {
                 name: 'Liz',
-                image: "images/section2/liz.jpg" },
+                image: "images/sm/section2/liz.jpg" },
             {
                 name: 'Maria',
-                image: "images/section2/maria.jpg" },
+                image: "images/sm/section2/maria.jpg" },
             {
                 name: 'McKenzie',
-                image: "images/section2/mckenzie.jpg" },
+                image: "images/sm/section2/mckenzie.jpg" },
             {
                 name: 'Ricky',
-                image: "images/section2/ricky.jpg" },
+                image: "images/sm/section2/ricky.jpg" },
             {
                 name: 'Tai',
-                image: "images/section2/tai.jpg" },
+                image: "images/sm/section2/tai.jpg" },
             {
                 name: 'Theresa Keh',
-                image: "images/section2/theresa.jpg" },
+                image: "images/sm/section2/theresa.jpg" },
             {
                 name: 'Turki',
-                image: "images/section2/turki.jpg" },
+                image: "images/sm/section2/turki.jpg" },
             {
                 name: 'Vipul Vatsyayan',
-                image: "images/section2/vipul.jpg" },
+                image: "images/sm/section2/vipul.jpg" },
             {
                 name: 'Aulton',
-                image: "images/section2/aulton.jpg" },
+                image: "images/sm/section2/aulton.jpg" },
             {
                 name: 'Bahruz',
-                image: "images/section2/bahruz.jpg" },
+                image: "images/sm/section2/bahruz.jpg" },
             {
                 name: 'Carlos',
-                image: "images/section2/carlos.jpg" },
+                image: "images/sm/section2/carlos.jpg" },
             {
                 name: 'Curtis',
-                image: "images/section2/curtis.jpg" },
+                image: "images/sm/section2/curtis.jpg" },
             {
                 name: 'Derek',
-                image: "images/section2/derek.jpg" },
+                image: "images/sm/section2/derek.jpg" },
             {
                 name: 'Eric',
-                image: "images/section2/eric.jpg" },
+                image: "images/sm/section2/eric.jpg" },
             {
                 name: 'Adrineh',
-                image: "images/section2/adrineh.jpg" },
+                image: "images/sm/section2/adrineh.jpg" },
             {
                 name: 'Zach',
-                image: "images/section2/zach.jpg" },
+                image: "images/sm/section2/zach.jpg" },
             {
                 name: 'Jenna',
-                image: "images/section2/jenna.jpg" }
+                image: "images/sm/section2/jenna.jpg" }
         ],
         currentClass: [],
         classes: ["Section 1", "Section 2"],
@@ -150,56 +151,77 @@ var vu = new Vue({
         sample:[],
         pool: [],
         picked: [],
-        roll: {name: '', image: "images/section1/roll.gif"},
+        roll: {name: '', image: "images/sm/section1/roll.gif"},
         current: {
-            image: "images/init3.jpg"
+            image: "images/sm/init.jpg"
         },
         dialog2: false,
         dialog3: false,
+        snackbar: false,
         headerImages: [
             {
-                value: "images/header-comic.jpg",
+                value: "images/sm/headers/header-comic.jpg",
                 name: "Comic"
             },
             {
-                value: "images/vintage-animated.gif",
+                value: "images/sm/headers/vintage-animated.gif",
                 name: "Comic Animated"
             },
             {
-                value: "images/vintage-annimation1.gif",
+                value: "images/sm/headers/vintage-annimation1.gif",
                 name: "Vintage Animated"
             },
             {
-                value: "images/anaglyph.png",
+                value: "images/sm/headers/anaglyph.jpg",
                 name: "Analygraph"
             },
             {
-                value: "images/anaglyph2.png",
+                value: "images/sm/headers/anaglyph2.jpg",
                 name: "Analygraph 2"
             },
             {
-                value: "images/moth-header-animated.gif",
+                value: "images/sm/headers/moth-header-animated.gif",
                 name: "Glitch Animated"
+            },
+            {
+                value: "images/sm/headers/animated-glitch-2.gif",
+                name: "Glitch Animated 2"
+            },
+            {
+                value: "images/sm/headers/watercolor.jpg",
+                name: "Water Color"
             }
         ],
-        headerImage: "images/header-comic.jpg"
+        headerImage: "images/sm/headers/header-comic.jpg",
+        headerImageNumber: 0,
     },
     watch: {
         currentSection: function (val) {
             this.participants = (val == "Section 1") ? this.section1 : this.section2;
-            this.roll.image = (val == "Section 1") ? "images/section1/roll.gif" : "images/section2/roll.gif";
+            this.roll.image = (val == "Section 1") ? "images/sm/section1/roll.gif" : "images/sm/section2/roll.gif";
             this.pool = _.cloneDeep(this.participants);
             this.picked = [];
             this.current = {
-                image: "images/init3.jpg"
+                image: "images/sm/init.jpg"
             };
+            this.sampleSize = "0"
         },
         sampleSize: function (val) {
             var number = parseInt(val,10);
             this.sample = _.sampleSize(this.participants, number);
+            setTimeout(() => {
+                this.sample = _.shuffle(this.sample);
+            }, 500);
         },
         dialog2: function (val){
             this.sampleSize = "0";
+        },
+        headerImageNumber: function (val){
+            this.headerImageNumber=val%8;
+            this.headerImage=this.headerImages[this.headerImageNumber].value;
+        },
+        poolIsEmpty: function (val){
+            this.snackbar=val;
         }
     },
     computed: {
@@ -220,14 +242,14 @@ var vu = new Vue({
     },
     methods: {
         pick: function () {
-            if(_.size(this.pool)!=0){
+            if(_.size(this.pool)!=0 && !this.isActive){
                 this.current = this.roll;
                 var y = _.sample(this.pool);
                 _.remove(this.pool, function (n) {
                     return n.name == y.name;
                 });
                 this.isActive=true;
-                if(this.pickDelay!=0){
+                if(this.pickDelay!=0 && this.delayActive){
                     setTimeout(() => {
                         this.current = y;
                         this.picked = _.concat(y, this.$data.picked);
@@ -240,15 +262,16 @@ var vu = new Vue({
                     this.isActive=false;
                 }
             }
-            else{
-                // Add error message
-            }
         },
         clear: function clear() {
             this.pool = _.cloneDeep(this.participants);
             this.picked = [];
             this.current = {
                 name: "",
-                image: "images/init2.jpg"
+                image: "images/sm/init.jpg"
             };
-        } } });
+        },
+        shuffle: function() {
+            this.sample = _.shuffle(this.sample);
+        }
+    } });

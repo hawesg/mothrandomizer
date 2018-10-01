@@ -20,3 +20,9 @@
 .fab-container {
     top: 1em!important;
 }
+.flip-list-move {
+    transition: transform 1s;
+}
+div.test > div:nth-of-type(even) {
+    background: #e0e0e0;
+}

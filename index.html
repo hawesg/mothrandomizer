@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/solid.css" integrity="sha384-VGP9aw4WtGH/uPAOseYxZ+Vz/vaTb1ehm1bwx92Fm8dTrE+3boLfF1SpAtB1z7HW" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/regular.css" integrity="sha384-ZlNfXjxAqKFWCwMwQFGhmMh3i89dWDnaFU2/VZg9CvsMGA7hXHQsPIqS+JIAmgEq" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/fontawesome.css" integrity="sha384-1rquJLNOM3ijoueaaeS5m+McXPJCGdr5HcA03/VHXxcp2kX2sUrQDmFc3jR5i/C7" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://unpkg.com/vue2-animate/dist/vue2-animate.min.css"/>
     <link rel="stylesheet" href="css/style.css">
 
 
@@ -45,6 +46,16 @@
                                             <v-icon>info</v-icon>
                                             <v-icon>close</v-icon>
                                         </v-btn>
+                                        <!--<v-btn
+                                                fab
+                                                dark
+                                                small
+                                                color="blue lighten-3"
+                                                v-bind:class="{ 'delayOff' : !delayActive }"
+                                                @click="delayActive=!delayActive"
+                                        >
+                                            <v-icon>fa-hourglass</v-icon>
+                                        </v-btn>-->
                                         <v-btn
                                                 fab
                                                 dark
@@ -63,6 +74,7 @@
                                         >
                                             <v-icon>help</v-icon>
                                         </v-btn>
+
                                         <v-btn
                                                 fab
                                                 dark
@@ -74,13 +86,12 @@
                                         </v-btn>
                                     </v-speed-dial>
                                     <v-img
-                                            :aspect-ratio="16/9"
-
                                             :src="headerImage"
-                                            height="335px"
+                                            @click="headerImageNumber++"
                                     >
 
                                     </v-img>
+
                                 </v-card>
                             </v-flex>
 
@@ -89,27 +100,29 @@
                             <v-flex xs12 sm6>
                                 <v-card id="picker" :hover="!poolIsEmpty" height="360px">
                                     <v-img
-                                            :src="current.image" lazy-src="images/init2.jpg"
+                                            :src="current.image" lazy-src="images/sm/init_sm.jpg"
                                             height="300px"
                                             contain
                                             v-on:click="pick"
                                     ></v-img>
-                                    <v-card-title primary-title>
+                                    <v-card-title>
                                         <div class="center">
-                                            <h2 class="headline mb-0">{{current.name}}</h2>
-                                            <i v-bind:class="{ 'hidden': !isActive }" class="v-icon fa-pulse fa-dice fas"></i>
-                                        </div>
+
+                                            <h2 class="headline mb-0" :key="current.name">{{current.name}}</h2>
                                     </v-card-title>
+</div>
                                 </v-card>
                             </v-flex>
                             <v-flex xs12 sm6>
                                 <v-card height="360px">
-                                    <v-toolbar>
+                                    <v-toolbar dense>
                                         <v-btn v-on:click="pick"
                                                v-bind:disabled="poolIsEmpty"
-                                               icon>
+                                               icon
+                                               flat>
                                             <i v-bind:class="{ 'fa-pulse': isActive }" class="v-icon fa-dice fas"></i>
                                         </v-btn>
+
                                         <v-spacer></v-spacer>
                                         <v-select
                                             :items="classes"
@@ -131,11 +144,11 @@
                                         <v-spacer></v-spacer>
 
                                     </v-card-actions>
-                                    <div data-simplebar>
                                     <v-list style="max-height: 250px; overflow-y: scroll;">
+                                        <transition-group name="slideLeft" tag="div" class="test">
                                         <v-list-tile
                                                 v-for="item in picked"
-                                                :key="item.id"
+                                                :key="item.name"
                                                 avatar
                                                 @click=""
                                         >
@@ -146,8 +159,9 @@
                                                 <img :src="item.image">
                                             </v-list-tile-avatar>
                                         </v-list-tile>
+                                        </transition-group>
                                     </v-list>
-                                    </div>
+
                                 </v-card>
                             </v-flex>
 
@@ -156,7 +170,7 @@
                 </v-card>
                 <v-footer class="pa-3">
                     <v-spacer></v-spacer>
-                    <div>&copy; {{ new Date().getFullYear() }} Garrett Hawes</div>
+                    <div>&copy; {{ new Date().getFullYear() }} <a href="http://garretthawes.com/">Garrett Hawes</a></div>
                 </v-footer>
             </v-flex>
         </v-layout>
@@ -185,6 +199,7 @@
                                 <v-slider
                                         v-model="pickDelay"
                                         :max="3000"
+                                        :min="200"
                                         step="500"
                                         ticks="always"
                                         tick-size="2"
@@ -256,6 +271,7 @@
             <v-card>
                 <v-toolbar>
                     <v-spacer></v-spacer>
+                    <v-btn v-on:click="shuffle">Shuffle</v-btn>
                     <v-select
                             :items="sampleSelector"
                             v-model="sampleSize"
@@ -281,23 +297,27 @@
                 </v-toolbar>
                 <v-card-actions>
                     <v-spacer></v-spacer>
-
                 </v-card-actions>
-                    <v-list>
-                        <v-list-tile
-                                v-for="item in sample"
-                                :key="item.id"
-                                avatar
-                                @click=""
-                        >
-                            <v-list-tile-content>
-                                <v-list-tile-title v-text="item.name"></v-list-tile-title>
-                            </v-list-tile-content>
-                            <v-list-tile-avatar>
-                                <img :src="item.image">
-                            </v-list-tile-avatar>
-                        </v-list-tile>
-                    </v-list>
+
+                <v-list>
+                    <transition-group name="flip-list" tag="div">
+
+                    <v-list-tile
+                            v-for="item in sample"
+                            :key="item.name"
+                            avatar
+                            @click=""
+                    >
+                        <v-list-tile-content>
+                            <v-list-tile-title v-html="item.name"></v-list-tile-title>
+                        </v-list-tile-content>
+                        <v-list-tile-avatar>
+                            <img :src="item.image">
+                        </v-list-tile-avatar>
+                    </v-list-tile>
+                    </transition-group>
+                </v-list>
+
             </v-card>
         </v-dialog>
 
@@ -305,7 +325,7 @@
             <v-card>
                 <v-card-title
                         class="headline grey lighten-2"
-                        primary-title
+                        @click=""
                 >
                     <v-img
                             src="images/mothrandomizer-comic.png"
@@ -333,6 +353,20 @@
                 </v-card-actions>
             </v-card>
         </v-dialog>
+
+        <v-snackbar
+                v-model="snackbar"
+                top
+        >
+            All participants have been picked please reset list to pick more.
+            <v-btn
+                    color="pink"
+                    flat
+                    @click="snackbar = false"
+            >
+                Close
+            </v-btn>
+        </v-snackbar>
 
     </v-app>
 
