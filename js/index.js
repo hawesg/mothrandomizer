@@ -192,8 +192,8 @@ var vu = new Vue({
                 name: "Water Color"
             }
         ],
-        headerImage: "images/sm/headers/header-comic.jpg",
-        headerImageNumber: 0,
+        headerImage: "images/sm/headers/anaglyph.jpg",
+        headerImageNumber: 3,
     },
     watch: {
         currentSection: function (val) {
