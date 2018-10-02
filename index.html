@@ -46,16 +46,6 @@
                                             <v-icon>info</v-icon>
                                             <v-icon>close</v-icon>
                                         </v-btn>
-                                        <!--<v-btn
-                                                fab
-                                                dark
-                                                small
-                                                color="blue lighten-3"
-                                                v-bind:class="{ 'delayOff' : !delayActive }"
-                                                @click="delayActive=!delayActive"
-                                        >
-                                            <v-icon>fa-hourglass</v-icon>
-                                        </v-btn>-->
                                         <v-btn
                                                 fab
                                                 dark
@@ -253,6 +243,30 @@
                 </v-card-text>
 
                 <v-divider></v-divider>
+                <v-expansion-panel>
+                    <v-expansion-panel-content
+                            :key="1"
+                    >
+                        <div slot="header">Remaining Participants ({{pool.length}})</div>
+                        <v-card>
+                            <v-list>
+                                    <v-list-tile
+                                            v-for="item in pool"
+                                            :key="item.name"
+                                            avatar
+                                            @click=""
+                                    >
+                                        <v-list-tile-content>
+                                            <v-list-tile-title v-text="item.name"></v-list-tile-title>
+                                        </v-list-tile-content>
+                                        <v-list-tile-avatar>
+                                            <img :src="item.image">
+                                        </v-list-tile-avatar>
+                                    </v-list-tile>
+                            </v-list>
+                        </v-card>
+                    </v-expansion-panel-content>
+                </v-expansion-panel>
 
                 <v-card-actions>
                     <v-spacer></v-spacer>
@@ -353,6 +367,60 @@
                 </v-card-actions>
             </v-card>
         </v-dialog>
+
+<v-dialog v-model="dialog2" width="500">
+    <v-card>
+        <v-toolbar>
+            <v-spacer></v-spacer>
+            <v-btn v-on:click="shuffle">Shuffle</v-btn>
+            <v-select
+                    :items="sampleSelector"
+                    v-model="sampleSize"
+                    menu-props="auto"
+                    hide-details
+                    flat
+                    single-line
+                    prepend-icon="fa-list-ol"
+            ></v-select>
+            <v-select
+                    :items="classes"
+                    v-model="currentSection"
+                    menu-props="auto"
+                    hide-details
+                    flat
+                    single-line
+                    prepend-icon="fa-graduation-cap"
+            ></v-select>
+            <v-spacer></v-spacer>
+            <v-toolbar-items class="hidden-sm-and-down">
+                <v-btn  color="error" v-on:click="sampleSize='0'">Clear List</v-btn>
+            </v-toolbar-items>
+        </v-toolbar>
+        <v-card-actions>
+            <v-spacer></v-spacer>
+        </v-card-actions>
+
+        <v-list>
+            <transition-group name="flip-list" tag="div">
+
+                <v-list-tile
+                        v-for="item in sample"
+                        :key="item.name"
+                        avatar
+                        @click=""
+                >
+                    <v-list-tile-content>
+                        <v-list-tile-title v-html="item.name"></v-list-tile-title>
+                    </v-list-tile-content>
+                    <v-list-tile-avatar>
+                        <img :src="item.image">
+                    </v-list-tile-avatar>
+                </v-list-tile>
+            </transition-group>
+        </v-list>
+
+    </v-card>
+</v-dialog>
 
         <v-snackbar
                 v-model="snackbar"
