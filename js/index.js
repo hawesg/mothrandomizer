@@ -241,14 +241,16 @@ var vu = new Vue({
         this.currentSection=(date.getHours()==13||(date.getHours()==14&&date.getMinutes()<20))?"Section 2":"Section 1";
     },
     methods: {
-        pick: function () {
+        pick: function (){
             if(_.size(this.pool)!=0 && !this.isActive){
+                //this.pool = _.shuffle(this.pool);
                 this.current = this.roll;
                 var y = _.sample(this.pool);
                 _.remove(this.pool, function (n) {
-                    return n.name == y.name;
+                   return n.name == y.name;
                 });
                 this.isActive=true;
+                //this.pool = _.tail(this.pool);
                 if(this.pickDelay!=0 && this.delayActive){
                     setTimeout(() => {
                         this.current = y;
@@ -272,6 +274,7 @@ var vu = new Vue({
             };
         },
         shuffle: function() {
-            this.sample = _.shuffle(this.sample);
+            this.sample = _.sampleSize(this.participants, this.sampleSize);
+            //this.sample = _.shuffle(this.sample);
         }
     } });
