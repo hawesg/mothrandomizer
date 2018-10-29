@@ -13,9 +13,6 @@ var vu = new Vue({
             {
                 name: 'Garrett Hawes',
                 image: "images/sm/Section1/garrett.jpg" },
-            {
-                name: 'Hannes Rusterholz',
-                image: "images/sm/Section1/hannes.jpg" },
 
             {
                 name: 'Jon Deirmenjian',
