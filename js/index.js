@@ -58,10 +58,6 @@ var vu = new Vue({
                 image: "images/sm/Section1/peter.jpg" },
 
             {
-                name: 'Saloni Vyas',
-                image: "images/sm/Section1/saloni.jpg" },
-
-            {
                 name: 'Melanie Kane',
                 image: "images/sm/Section1/melanie.jpg" },
 
@@ -160,6 +156,10 @@ var vu = new Vue({
         snackbar: false,
         headerImages: [
             {
+                value: "images/sm/headers/veterans.jpg",
+                name: "Veterans Day"
+            },
+            {
                 value: "images/sm/headers/header-comic.jpg",
                 name: "Comic"
             },
@@ -192,7 +192,7 @@ var vu = new Vue({
                 name: "Water Color"
             }
         ],
-        headerImage: "images/sm/headers/anaglyph.jpg",
+        headerImage: "images/sm/headers/veterans.jpg",
         headerImageNumber: 3,
     },
     watch: {
